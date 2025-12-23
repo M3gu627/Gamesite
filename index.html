@@ -249,6 +249,16 @@
             margin-top: 5px;
         }
 
+        .percentage-symbol {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-weight: 500;
+            pointer-events: none;
+        }
+
         footer {
             text-align: center;
             padding: 30px 0;
@@ -350,7 +360,10 @@
                     <h3>HP Buffs/Debuffs</h3>
                     <div id="hp-buffs">
                         <div class="buff-item">
-                            <input type="number" class="hp-buff" placeholder="Enter percentage (use negative for debuff)" value="0" onchange="calculateHP()">
+                            <div style="position: relative; flex: 1;">
+                                <input type="number" class="hp-buff" placeholder="Enter percentage (use negative for debuff)" value="0" onchange="calculateHP()" style="padding-right: 35px;">
+                                <span class="percentage-symbol">%</span>
+                            </div>
                         </div>
                     </div>
                     <button class="add-buff-btn" onclick="addHPBuff()">+ Add Buff/Debuff</button>
@@ -377,7 +390,7 @@
                     <label for="crit-active">Critical Hit?</label>
                     <select id="crit-active" onchange="calculateDamage()">
                         <option value="no">No Critical</option>
-                        <option value="yes">Yes (+50% Damage)</option>
+                        <option value="yes">Yes (+100% Damage)</option>
                     </select>
                 </div>
 
@@ -385,7 +398,10 @@
                     <h3>Damage Buffs/Debuffs (%)</h3>
                     <div id="damage-buffs">
                         <div class="buff-item">
-                            <input type="number" class="damage-buff" placeholder="Enter percentage (use negative for debuff)" value="0" onchange="calculateDamage()">
+                            <div style="position: relative; flex: 1;">
+                                <input type="number" class="damage-buff" placeholder="Enter percentage (use negative for debuff)" value="0" onchange="calculateDamage()" style="padding-right: 35px;">
+                                <span class="percentage-symbol">%</span>
+                            </div>
                         </div>
                     </div>
                     <button class="add-buff-btn" onclick="addDamageBuff()">+ Add Buff/Debuff</button>
@@ -457,7 +473,10 @@
                     <h3>Attack Speed Buffs/Debuffs (%)</h3>
                     <div id="attackspeed-buffs">
                         <div class="buff-item">
-                            <input type="number" class="attackspeed-buff" placeholder="Enter percentage (use negative for debuff)" value="0" onchange="calculateAttackSpeed()">
+                            <div style="position: relative; flex: 1;">
+                                <input type="number" class="attackspeed-buff" placeholder="Enter percentage (use negative for debuff)" value="0" onchange="calculateAttackSpeed()" style="padding-right: 35px;">
+                                <span class="percentage-symbol">%</span>
+                            </div>
                         </div>
                     </div>
                     <button class="add-buff-btn" onclick="addAttackSpeedBuff()">+ Add Buff/Debuff</button>
@@ -516,7 +535,10 @@
             const buffItem = document.createElement('div');
             buffItem.className = 'buff-item';
             buffItem.innerHTML = `
-                <input type="number" class="hp-buff" placeholder="Enter percentage (use negative for debuff)" value="0" onchange="calculateHP()">
+                <div style="position: relative; flex: 1;">
+                    <input type="number" class="hp-buff" placeholder="Enter percentage (use negative for debuff)" value="0" onchange="calculateHP()" style="padding-right: 35px;">
+                    <span class="percentage-symbol">%</span>
+                </div>
                 <button class="remove-buff-btn" onclick="this.parentElement.remove(); calculateHP();">Remove</button>
             `;
             container.appendChild(buffItem);
@@ -531,7 +553,7 @@
             let totalDamage = baseDamage;
             
             if (isCrit) {
-                totalDamage *= 1.5;
+                totalDamage *= 2;
             }
             
             buffs.forEach(buff => {
@@ -547,7 +569,10 @@
             const buffItem = document.createElement('div');
             buffItem.className = 'buff-item';
             buffItem.innerHTML = `
-                <input type="number" class="damage-buff" placeholder="Enter percentage (use negative for debuff)" value="0" onchange="calculateDamage()">
+                <div style="position: relative; flex: 1;">
+                    <input type="number" class="damage-buff" placeholder="Enter percentage (use negative for debuff)" value="0" onchange="calculateDamage()" style="padding-right: 35px;">
+                    <span class="percentage-symbol">%</span>
+                </div>
                 <button class="remove-buff-btn" onclick="this.parentElement.remove(); calculateDamage();">Remove</button>
             `;
             container.appendChild(buffItem);
@@ -605,7 +630,10 @@
             const buffItem = document.createElement('div');
             buffItem.className = 'buff-item';
             buffItem.innerHTML = `
-                <input type="number" class="attackspeed-buff" placeholder="Enter percentage (use negative for debuff)" value="0" onchange="calculateAttackSpeed()">
+                <div style="position: relative; flex: 1;">
+                    <input type="number" class="attackspeed-buff" placeholder="Enter percentage (use negative for debuff)" value="0" onchange="calculateAttackSpeed()" style="padding-right: 35px;">
+                    <span class="percentage-symbol">%</span>
+                </div>
                 <button class="remove-buff-btn" onclick="this.parentElement.remove(); calculateAttackSpeed();">Remove</button>
             `;
             container.appendChild(buffItem);
